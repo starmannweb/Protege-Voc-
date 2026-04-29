@@ -236,7 +236,6 @@
 
     <script>
         lucide.createIcons();
-        window.dataLayer = window.dataLayer || [];
 
         const saved = localStorage.getItem('bolsa-checkout');
         if (saved) {
@@ -254,36 +253,6 @@
 
                 let proposta = state.proposalNumber || ('BPC-' + Math.floor(100000 + Math.random() * 900000));
                 document.getElementById('lbl-proposal').innerText = proposta;
-
-                // ============================================================
-                // DATALAYER: purchase_confirmation (página de obrigado)
-                // ============================================================
-                var attr = {};
-                if (window.LDFGlobal && typeof window.LDFGlobal.getTrackingData === 'function') {
-                    var td = window.LDFGlobal.getTrackingData();
-                    attr = {
-                        partner_id: td.partner_id || 'direct',
-                        utm_source: td.utm_source || '',
-                        utm_medium: td.utm_medium || '',
-                        utm_campaign: td.utm_campaign || ''
-                    };
-                }
-
-                window.dataLayer.push(Object.assign({
-                    event: 'purchase_confirmation',
-                    transaction_id: proposta,
-                    plan_id: state.plan ? state.plan.id : '',
-                    plan_name: state.plan ? state.plan.name : '',
-                    value: state.plan ? state.plan.totalPrice : 0,
-                    price_monthly: state.plan ? state.plan.price : 0,
-                    currency: 'BRL',
-                    payment_method: 'credit_card',
-                    installments: state.payment ? state.payment.parcelas || '1' : '1',
-                    page_path: window.location.pathname,
-                    page_url: window.location.href
-                }, attr));
-
-                console.log('%c[Bolsa Protegida dataLayer]', 'color: #3b82f6; font-weight: bold;', 'purchase_confirmation');
 
             } catch (e) { }
         } else {

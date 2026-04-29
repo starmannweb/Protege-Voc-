@@ -169,49 +169,6 @@
 
     <script>
         lucide.createIcons();
-        window.dataLayer = window.dataLayer || [];
-
-        // ============================================================
-        // DATALAYER: payment_failed (página de erro)
-        // ============================================================
-        (function() {
-            var attr = {};
-            if (window.LDFGlobal && typeof window.LDFGlobal.getTrackingData === 'function') {
-                var td = window.LDFGlobal.getTrackingData();
-                attr = {
-                    partner_id: td.partner_id || 'direct',
-                    utm_source: td.utm_source || '',
-                    utm_medium: td.utm_medium || '',
-                    utm_campaign: td.utm_campaign || ''
-                };
-            }
-
-            var planData = {};
-            var saved = localStorage.getItem('bolsa-checkout');
-            if (saved) {
-                try {
-                    var state = JSON.parse(saved);
-                    if (state.plan) {
-                        planData = {
-                            plan_id: state.plan.id,
-                            plan_name: state.plan.name,
-                            plan_price: state.plan.price,
-                            plan_total: state.plan.totalPrice
-                        };
-                    }
-                } catch (e) { }
-            }
-
-            window.dataLayer.push(Object.assign({
-                event: 'payment_failed',
-                error_type: 'payment_declined',
-                error_message: 'Pagamento recusado pela operadora',
-                page_path: window.location.pathname,
-                page_url: window.location.href
-            }, attr, planData));
-
-            console.log('%c[Bolsa Protegida dataLayer]', 'color: #3b82f6; font-weight: bold;', 'payment_failed');
-        })();
 
         document.getElementById('btn-retry').addEventListener('click', () => {
             let saved = localStorage.getItem('bolsa-checkout');

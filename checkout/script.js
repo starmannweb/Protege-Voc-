@@ -1,57 +1,8 @@
 // Init Lucide Icons
 lucide.createIcons();
 
-// Garante dataLayer
-window.dataLayer = window.dataLayer || [];
-
 // Storage Key
 const STORAGE_KEY = 'bolsa-checkout';
-
-// ============================================================
-// DATALAYER HELPERS - Checkout Funnel
-// ============================================================
-
-/**
- * Retorna dados de atribuição (UTMs, partner_id) do LDFGlobal ou fallback
- */
-function getCheckoutAttribution() {
-  if (window.LDFGlobal && typeof window.LDFGlobal.getTrackingData === 'function') {
-    var data = window.LDFGlobal.getTrackingData();
-    return {
-      partner_id: data.partner_id || 'direct',
-      utm_source: data.utm_source || '',
-      utm_medium: data.utm_medium || '',
-      utm_campaign: data.utm_campaign || '',
-      page_path: data.page_path || window.location.pathname,
-      page_url: data.page_url || window.location.href
-    };
-  }
-  return {
-    partner_id: 'direct',
-    utm_source: '',
-    utm_medium: '',
-    utm_campaign: '',
-    page_path: window.location.pathname,
-    page_url: window.location.href
-  };
-}
-
-/**
- * Push evento de checkout no dataLayer
- */
-function pushCheckoutEvent(eventName, extra) {
-  var attr = getCheckoutAttribution();
-  var planData = state.plan ? {
-    plan_id: state.plan.id,
-    plan_name: state.plan.name,
-    plan_price: state.plan.price,
-    plan_total: state.plan.totalPrice
-  } : {};
-
-  var payload = Object.assign({}, { event: eventName }, attr, planData, extra || {});
-  window.dataLayer.push(payload);
-  console.log('%c[Bolsa Protegida dataLayer]', 'color: #3b82f6; font-weight: bold;', eventName, payload);
-}
 
 // Plans Catalog
 const PLANS_CATALOG = {
@@ -398,7 +349,6 @@ dom('btn-next-1').addEventListener('click', () => {
 
   if (valid) {
     state.step = 2; saveState(); showStep(2);
-    pushCheckoutEvent('checkout_step', { checkout_step: 2, step_name: 'endereco' });
   }
 });
 
@@ -415,7 +365,6 @@ dom('btn-next-2').addEventListener('click', () => {
 
   if (valid) {
     state.step = 3; saveState(); showStep(3);
-    pushCheckoutEvent('checkout_step', { checkout_step: 3, step_name: 'pagamento' });
   }
 });
 
@@ -439,9 +388,6 @@ dom('btn-submit').addEventListener('click', async () => {
     btn.innerHTML = `<span class="loading-spin">⟳</span> Processando...`;
     btn.disabled = true;
 
-    // Track: submit do pagamento
-    pushCheckoutEvent('checkout_submit', { checkout_step: 3, step_name: 'pagamento_enviado' });
-
     // Simulate API Check
     await new Promise(r => setTimeout(r, 2000));
     const success = Math.random() > 0.3;
@@ -449,23 +395,8 @@ dom('btn-submit').addEventListener('click', async () => {
       state.proposalNumber = 'BPC-' + Math.floor(100000 + Math.random() * 900000);
       saveState();
 
-      // Track: purchase (conversão)
-      pushCheckoutEvent('purchase', {
-        transaction_id: state.proposalNumber,
-        value: state.plan ? state.plan.totalPrice : 0,
-        currency: 'BRL',
-        payment_method: 'credit_card',
-        installments: state.payment.parcelas || '1'
-      });
-
       window.location.href = 'obrigado.html';
     } else {
-      // Track: erro no pagamento
-      pushCheckoutEvent('checkout_error', {
-        error_type: 'payment_declined',
-        error_message: 'Pagamento recusado pela operadora'
-      });
-
       window.location.href = 'erro.html';
     }
   }
@@ -492,9 +423,4 @@ window.addEventListener('DOMContentLoaded', () => {
   updateSummary();
   showStep(state.step);
 
-  // Track: início do checkout
-  pushCheckoutEvent('begin_checkout', {
-    checkout_step: state.step,
-    step_name: state.step === 1 ? 'dados_pessoais' : (state.step === 2 ? 'endereco' : 'pagamento')
-  });
 });
