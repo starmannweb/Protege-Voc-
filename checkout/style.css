@@ -46,7 +46,7 @@ body {
   max-width: 1152px;
   margin: 0 auto;
   padding: 0 1rem;
-  height: 4rem;
+  height: 4.5rem;
   display: flex;
   align-items: center;
 }
@@ -54,9 +54,9 @@ body {
 .logo-img {
   width: 190px;
   max-width: 46vw;
-  height: 64px;
-  object-fit: cover;
-  object-position: center 52%;
+  height: 58px;
+  object-fit: contain;
+  object-position: center;
   display: block;
 }
 

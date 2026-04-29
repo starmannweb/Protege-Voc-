@@ -286,11 +286,11 @@ function loadFields() {
   if (state.plan) {
     let price = state.plan.price;
     let val = price.toFixed(2).replace('.', ',');
-    let parcHtml = `<option value="1">1x de R$ ${val} ao mês (Recorrente)</option>`;
+    let parcHtml = `<option value="12">12x de R$ ${val} ao mês</option>`;
     dom('parcelas').innerHTML = parcHtml;
-    // Set default value if empty
-    if (!state.payment.parcelas) {
-      state.payment.parcelas = '1';
+    // There is only one payment option for this product.
+    if (state.payment.parcelas !== '12') {
+      state.payment.parcelas = '12';
       saveState();
     }
   }
