@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livre de Franquia - Erro</title>
+    <title>Bolsa Protegida - Pagamento não aprovado</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -87,6 +87,45 @@
             flex-direction: column;
             gap: 0.75rem;
         }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #002C5C, #2BA9E0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-mark svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.05;
+        }
+
+        .logo-text strong {
+            font-size: 1rem;
+        }
+
+        .logo-text span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--muted-foreground);
+        }
     </style>
 </head>
 
@@ -96,7 +135,13 @@
         <header class="app-header">
             <div class="header-content">
                 <a href="../index.html" class="logo-link">
-                    <img src="../assets/logo-LDF-_2_ (1).png" alt="Livre de Franquia" class="logo-img">
+                    <div class="logo-mark">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    </div>
+                    <div class="logo-text">
+                        <strong>Bolsa Protegida</strong>
+                        <span>+ Cartão Protegido</span>
+                    </div>
                 </a>
             </div>
         </header>
@@ -107,16 +152,15 @@
                     <i data-lucide="x-circle"></i>
                 </div>
 
-                <h1 class="message-title">Ops… não deu certo dessa vez.</h1>
-                <p class="message-subtitle">Não foi possível processar o pagamento no cartão. Verifique os dados ou
-                    tente outro cartão.</p>
+                <h1 class="message-title">Ops, o pagamento não foi aprovado.</h1>
+                <p class="message-subtitle">Não foi possível ativar sua Bolsa Protegida agora. Confira os dados do cartão ou tente outra forma de pagamento.</p>
 
                 <div class="action-stack">
                     <button class="btn btn-primary" id="btn-retry">
-                        Tentar novamente
+                        Tentar pagamento novamente
                     </button>
                     <button class="btn btn-outline" id="btn-review">
-                        Voltar e revisar dados
+                        Revisar meus dados
                     </button>
                 </div>
             </div>
@@ -124,13 +168,10 @@
 
         <footer class="app-footer">
             <div class="footer-content">
-                <p>&copy; 2026 Livre de Franquia. Todos os direitos reservados.</p>
+                <p>&copy; 2026 Bolsa Protegida + Cartão Protegido. Todos os direitos reservados.</p>
             </div>
         </footer>
     </div>
-
-    <!-- Attribution + dataLayer -->
-    <script src="../popup/ldf-global.js"></script>
 
     <script>
         lucide.createIcons();
@@ -152,7 +193,7 @@
             }
 
             var planData = {};
-            var saved = localStorage.getItem('ldf-checkout');
+            var saved = localStorage.getItem('bolsa-checkout');
             if (saved) {
                 try {
                     var state = JSON.parse(saved);
@@ -175,28 +216,28 @@
                 page_url: window.location.href
             }, attr, planData));
 
-            console.log('%c[LDF dataLayer]', 'color: #3b82f6; font-weight: bold;', 'payment_failed');
+            console.log('%c[Bolsa Protegida dataLayer]', 'color: #3b82f6; font-weight: bold;', 'payment_failed');
         })();
 
         document.getElementById('btn-retry').addEventListener('click', () => {
-            let saved = localStorage.getItem('ldf-checkout');
+            let saved = localStorage.getItem('bolsa-checkout');
             if (saved) {
                 try {
                     let state = JSON.parse(saved);
                     state.step = 3;
-                    localStorage.setItem('ldf-checkout', JSON.stringify(state));
+                    localStorage.setItem('bolsa-checkout', JSON.stringify(state));
                 } catch (e) { }
             }
             window.location.href = 'index.html';
         });
 
         document.getElementById('btn-review').addEventListener('click', () => {
-            let saved = localStorage.getItem('ldf-checkout');
+            let saved = localStorage.getItem('bolsa-checkout');
             if (saved) {
                 try {
                     let state = JSON.parse(saved);
                     state.step = 1;
-                    localStorage.setItem('ldf-checkout', JSON.stringify(state));
+                    localStorage.setItem('bolsa-checkout', JSON.stringify(state));
                 } catch (e) { }
             }
             window.location.href = 'index.html';

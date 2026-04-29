@@ -50,14 +50,14 @@ function pushCheckoutEvent(eventName, extra) {
 
   var payload = Object.assign({}, { event: eventName }, attr, planData, extra || {});
   window.dataLayer.push(payload);
-  console.log('%c[LDF dataLayer]', 'color: #3b82f6; font-weight: bold;', eventName, payload);
+  console.log('%c[Bolsa Protegida dataLayer]', 'color: #3b82f6; font-weight: bold;', eventName, payload);
 }
 
 // Plans Catalog
 const PLANS_CATALOG = {
   unico: {
     id: 'unico', name: 'Bolsa Protegida + Cartão Protegido', price: 5.90, totalPrice: 70.80,
-    benefits: ['Até R$ 5.000 para roubo ou furto de bens', 'Cartões protegidos contra perda, roubo e furto', 'Cobertura de R$ 2.000 para saques sob coação', 'Proteção garantida pela SURA', 'Sem carência e sem franquia (cartões)']
+    benefits: ['Até R$ 5.000 para roubo ou furto qualificado de bens', 'Cartões protegidos contra perda, roubo e furto', 'Cobertura de R$ 2.000 para saques e compras sob coação', 'Sem carência', 'Sem franquia para cartões e cobertura sob coação']
   }
 };
 
@@ -190,9 +190,10 @@ function renderSummaryHtml(plan, isMobile) {
         ${plan.benefits.map(b => `<div class="benefit-item"><i data-lucide="check"></i><span>${b}</span></div>`).join('')}
       </div>
       <div class="plan-footer">
-        <div class="guarantee" style="display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--muted-foreground); font-size: 0.875rem; flex-wrap: wrap; margin-bottom: 8px;">
-          <span>🔒 Pagamento 100% Seguro feito pela</span>
-          <img src="../assets/logo-iugu.png" alt="Iugu" style="height: 20px; object-fit: contain;">
+        <div class="guarantee guarantee-iugu">
+          <i data-lucide="lock" style="width: 0.95rem; height: 0.95rem;"></i>
+          <span>Pagamento 100% seguro feito pela</span>
+          <img src="../assets/logo-iugu.png" alt="Iugu" class="logo-iugu">
         </div>
         <div class="guarantee" style="margin-top: 12px;">
           <span>Garantido por</span>
@@ -445,7 +446,7 @@ dom('btn-submit').addEventListener('click', async () => {
     await new Promise(r => setTimeout(r, 2000));
     const success = Math.random() > 0.3;
     if (success) {
-      state.proposalNumber = 'SURA-' + Math.floor(100000 + Math.random() * 900000);
+      state.proposalNumber = 'BPC-' + Math.floor(100000 + Math.random() * 900000);
       saveState();
 
       // Track: purchase (conversão)
@@ -454,7 +455,7 @@ dom('btn-submit').addEventListener('click', async () => {
         value: state.plan ? state.plan.totalPrice : 0,
         currency: 'BRL',
         payment_method: 'credit_card',
-        installments: state.payment.parcelas || '12'
+        installments: state.payment.parcelas || '1'
       });
 
       window.location.href = 'obrigado.html';

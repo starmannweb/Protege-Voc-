@@ -382,6 +382,22 @@ body {
   color: var(--muted-foreground);
 }
 
+.guarantee-iugu {
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.guarantee-iugu i {
+  color: var(--primary);
+}
+
+.logo-iugu {
+  height: 1.35rem;
+  width: auto;
+  object-fit: contain;
+}
+
 .logo-sura {
   height: 1.25rem;
   width: auto;
@@ -556,6 +572,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
 .btn-primary {
