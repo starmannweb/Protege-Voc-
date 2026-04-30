@@ -413,6 +413,7 @@ window.addEventListener('DOMContentLoaded', () => {
     state.planId = 'unico';
   }
   state.plan = PLANS_CATALOG[state.planId];
+  state.step = 1;
   saveState();
 
   dom('app-container').style.display = 'flex';
