@@ -275,6 +275,7 @@ section { padding: 100px 0; }
 .plano-preco { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .plano-preco .label { flex-basis: 100%; font-size: 0.9rem; color: var(--texto-suave); margin-right: 0; }
 .plano-preco .parcelas { font-size: 1rem; font-weight: 800; color: var(--azul-sura); margin-right: 2px; }
+.plano-preco .apenas { font-size: 1rem; font-weight: 800; color: var(--azul-sura); margin-right: 2px; }
 .plano-preco .moeda { font-size: 1.2rem; font-weight: 700; color: var(--azul-sura); }
 .plano-preco .num { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 700; color: var(--azul-sura); line-height: 1; }
 .plano-preco .periodo { font-size: 1rem; color: var(--texto-suave); }
@@ -744,9 +745,10 @@ section { padding: 100px 0; }
 
         <div class="plano-footer">
           <div class="plano-preco">
+            <span class="apenas">apenas</span>
             <span class="moeda">R$</span>
             <span class="num">5,90</span>
-            <span class="periodo">mensal recorrente</span>
+            <span class="periodo">por mês</span>
           </div>
           <a href="./checkout/index.html?plano=unico" class="btn btn-accent btn-lg">Contratar agora</a>
           <div class="coberturas-info">
