@@ -272,20 +272,23 @@ section { padding: 100px 0; }
   content: ''; position: absolute; inset: 0 0 auto; height: 7px; background: var(--rosa-acento); z-index: 3;
 }
 .planificacao-head {
-  min-height: 190px; padding: 30px 28px 28px; display: flex; flex-direction: column; gap: 16px;
+  min-height: 190px; padding: 0; display: flex; flex-direction: column; gap: 0;
   background: var(--branco); border-bottom: 1px solid var(--borda);
 }
-.planificacao-col.destacado .planificacao-head { padding-top: 34px; }
-.planificacao-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.planificacao-title {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--azul-sura); padding: 18px 22px;
+}
+.planificacao-col.destacado .planificacao-title { padding-top: 24px; }
 .planificacao-title h4 {
   font-family: 'Manrope', sans-serif; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--azul-sura);
+  text-transform: uppercase; color: var(--branco);
 }
 .plano-tag {
   display: inline-flex; align-items: center; justify-content: center; padding: 5px 10px; border-radius: 999px;
-  background: var(--azul-claro); color: var(--azul-sura); font-size: 0.72rem; font-weight: 900;
+  background: rgba(255,255,255,0.16); color: var(--branco); font-size: 0.72rem; font-weight: 900;
 }
-.plano-tag.accent { background: rgba(250, 114, 14, 0.12); color: #D95F0B; }
+.plano-tag.accent { background: var(--rosa-acento); color: var(--branco); }
 .plano-preco { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .plano-preco .label { flex-basis: 100%; font-size: 0.9rem; color: var(--texto-suave); margin-right: 0; }
 .plano-preco .parcelas { font-size: 1rem; font-weight: 800; color: var(--azul-sura); margin-right: 2px; }
@@ -294,36 +297,30 @@ section { padding: 100px 0; }
 .plano-preco .num { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 700; color: var(--azul-sura); line-height: 1; }
 .plano-preco .periodo { font-size: 1rem; color: var(--texto-suave); }
 .plano-preco .cafezinho { flex-basis: 100%; font-size: 0.9rem; color: var(--texto-suave); margin-top: -2px; }
-.planificacao-sub { color: var(--texto-suave); font-size: 0.9rem; line-height: 1.45; }
+.planificacao-head .plano-preco { padding: 26px 28px 0; }
+.planificacao-sub { color: var(--texto-suave); font-size: 0.9rem; line-height: 1.45; padding: 12px 28px 26px; }
 .planificacao-body { display: flex; flex-direction: column; flex: 1; }
 .planificacao-row {
-  min-height: 92px; padding: 18px 28px; display: grid; gap: 8px; align-content: center;
+  min-height: 86px; padding: 17px 28px; display: grid; gap: 7px; align-content: center;
   border-bottom: 1px solid var(--borda);
 }
+.planificacao-row.compact { min-height: 72px; }
 .planificacao-row .label {
   font-size: 0.78rem; font-weight: 800; color: var(--azul-sura); letter-spacing: 0.08em; text-transform: uppercase;
 }
 .planificacao-row strong { font-size: 1.02rem; color: var(--texto); line-height: 1.35; }
-.planificacao-row .valor { font-family: 'Fraunces', serif; font-size: 1.45rem; color: var(--azul-sura); line-height: 1; }
+.planificacao-row .valor { font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 800; color: var(--texto); line-height: 1.35; }
 .planificacao-row small { color: var(--texto-suave); font-size: 0.82rem; line-height: 1.4; }
+.status-ok {
+  width: fit-content; display: inline-flex; align-items: center; justify-content: center;
+  padding: 5px 10px; border-radius: 999px; color: #18B957; background: rgba(43, 213, 108, 0.1);
+  border: 1px solid rgba(43, 213, 108, 0.16); font-size: 0.9rem; font-weight: 900;
+}
 .planificacao-cta { margin-top: auto; padding: 24px 28px 28px; background: var(--branco); }
 .planificacao-cta .btn { width: 100%; }
 
 .plano-notas { max-width: 960px; margin: 36px auto 0; display: grid; gap: 18px; }
 .plano-notas .coberturas-info { margin-top: 0; }
-.carencia-global {
-  display: flex; align-items: center; justify-content: space-between; gap: 18px;
-  background: var(--branco); border: 1px solid rgba(0, 44, 92, 0.08); border-radius: 18px;
-  padding: 18px 22px; box-shadow: 0 14px 34px rgba(0, 44, 92, 0.08);
-}
-.carencia-global span {
-  font-size: 0.78rem; font-weight: 900; color: var(--azul-sura); letter-spacing: 0.1em; text-transform: uppercase;
-}
-.carencia-global strong {
-  display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px;
-  border-radius: 999px; color: #18B957; background: rgba(43, 213, 108, 0.1);
-  border: 1px solid rgba(43, 213, 108, 0.16); font-size: 0.95rem;
-}
 
 /* ===== PARA QUEM É ===== */
 .personas { background: var(--branco); }
@@ -476,12 +473,14 @@ section { padding: 100px 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   section { padding: 70px 0; }
   .planificacao-grid { grid-template-columns: 1fr; gap: 18px; }
-  .planificacao-head { min-height: auto; padding: 24px; }
+  .planificacao-head { min-height: auto; }
+  .planificacao-title { padding: 17px 20px; }
+  .planificacao-col.destacado .planificacao-title { padding-top: 22px; }
+  .planificacao-head .plano-preco { padding: 22px 24px 0; }
+  .planificacao-sub { padding: 10px 24px 22px; }
   .planificacao-row { min-height: auto; padding: 16px 24px; }
   .planificacao-cta { padding: 22px 24px 24px; }
-  .planificacao-col.destacado .planificacao-head { padding-top: 30px; }
   .plano-notas { margin-top: 24px; }
-  .carencia-global { align-items: flex-start; flex-direction: column; }
   .coberturas-info { grid-template-columns: 1fr; }
 }
 @media (max-width: 540px) {
@@ -788,6 +787,10 @@ section { padding: 100px 0; }
                 <strong>15% em roubo ou furto qualificado de bens</strong>
                 <small>Cartões e coação: não se aplica.</small>
               </div>
+              <div class="planificacao-row compact">
+                <span class="label">Carência</span>
+                <strong class="status-ok">Não se aplica</strong>
+              </div>
             </div>
             <div class="planificacao-cta">
               <a href="./checkout/index.html?plano=plano1" class="btn btn-accent">Contratar agora</a>
@@ -822,6 +825,10 @@ section { padding: 100px 0; }
                 <span class="label">Franquia</span>
                 <strong>15% em roubo ou furto qualificado de bens</strong>
                 <small>Cartões e coação: não se aplica.</small>
+              </div>
+              <div class="planificacao-row compact">
+                <span class="label">Carência</span>
+                <strong class="status-ok">Não se aplica</strong>
               </div>
             </div>
             <div class="planificacao-cta">
@@ -858,6 +865,10 @@ section { padding: 100px 0; }
                 <strong>15% em roubo ou furto qualificado de bens</strong>
                 <small>Cartões e coação: não se aplica.</small>
               </div>
+              <div class="planificacao-row compact">
+                <span class="label">Carência</span>
+                <strong class="status-ok">Não se aplica</strong>
+              </div>
             </div>
             <div class="planificacao-cta">
               <a href="./checkout/index.html?plano=plano3" class="btn btn-accent">Contratar agora</a>
@@ -866,10 +877,6 @@ section { padding: 100px 0; }
         </div>
 
         <div class="plano-notas">
-          <div class="carencia-global">
-            <span>Carência</span>
-            <strong>Não se aplica</strong>
-          </div>
           <div class="coberturas-info">
             <div class="info-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
