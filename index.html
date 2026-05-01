@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Bolsa Protegida | Proteção garantida pela SURA</title>
-<meta name="description" content="Sua bolsa carrega sua rotina. O Bolsa Protegida garante indenização em caso de roubo, furto qualificado e fraudes nos cartões por R$ 5,90 por mês." />
+<meta name="description" content="Sua bolsa carrega sua rotina. O Bolsa Protegida garante indenização em caso de roubo, furto qualificado e fraudes nos cartões a partir de R$ 3,90 por mês." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -88,6 +88,17 @@ h3 { font-size: 1.35rem; font-weight: 600; }
 .btn-secondary:hover { background: var(--azul-sura); color: var(--branco); }
 .btn-accent { background: var(--rosa-acento); color: var(--branco); box-shadow: 0 4px 16px rgba(250, 114, 14, 0.32); }
 .btn-accent:hover { background: #D95F0B; transform: translateY(-2px); }
+.btn-cta-piscante {
+  background: var(--rosa-acento);
+  color: var(--branco);
+  box-shadow: 0 6px 20px rgba(250, 114, 14, 0.38);
+  animation: ctaBlink 1.35s ease-in-out infinite;
+}
+.btn-cta-piscante:hover {
+  background: #D95F0B;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(250, 114, 14, 0.45);
+}
 .btn-lg { padding: 18px 36px; font-size: 1.05rem; }
 
 .menu-toggle { display: none; background: none; border: none; color: var(--texto); cursor: pointer; }
@@ -244,7 +255,7 @@ section { padding: 100px 0; }
 
 /* ===== PLANO / TABELA ===== */
 .plano { background: linear-gradient(180deg, var(--branco) 0%, var(--creme) 100%); scroll-margin-top: 96px; }
-.plano-wrapper { max-width: 980px; margin: 0 auto; }
+.plano-wrapper { max-width: 1080px; margin: 0 auto; }
 .plano-card {
   background: var(--branco); border-radius: 32px; overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 44, 92, 0.1); border: 1px solid var(--borda);
@@ -256,22 +267,43 @@ section { padding: 100px 0; }
 .plano-header h3 { color: var(--branco); font-size: 1.6rem; }
 .plano-header .badge { background: rgba(255,255,255,0.18); padding: 6px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
 
-.tabela { width: 100%; border-collapse: collapse; }
+.tabela { width: 100%; min-width: 860px; border-collapse: collapse; }
 .tabela th, .tabela td { padding: 20px 24px; text-align: left; }
 .tabela thead th {
-  background: var(--azul-suave); font-size: 0.8rem; font-weight: 700; color: var(--azul-sura);
+  background: var(--azul-sura); font-size: 0.8rem; font-weight: 800; color: var(--branco);
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 .tabela tbody tr { border-bottom: 1px solid var(--borda); }
 .tabela tbody tr:last-child { border-bottom: none; }
 .tabela td:first-child { font-weight: 600; color: var(--texto); }
+.tabela th:not(:first-child), .tabela td:not(:first-child) { text-align: center; }
 .tabela .valor { font-family: 'Fraunces', serif; font-weight: 600; color: var(--azul-sura); font-size: 1.05rem; }
 .tabela .ok { color: #2BD56C; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+.tabela tfoot td {
+  background: #EEF2F7;
+  border-top: 1px solid var(--borda);
+  font-weight: 800;
+  color: var(--azul-sura);
+}
 
 .plano-footer {
-  background: var(--azul-claro); padding: 28px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  background: var(--azul-claro); padding: 30px 40px; display: grid; gap: 24px;
 }
-.plano-footer .coberturas-info { flex: 1 0 100%; margin-top: 4px; }
+.planos-acoes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.plano-opcao {
+  background: var(--branco); border: 1px solid rgba(0, 44, 92, 0.08); border-radius: 20px;
+  padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--sombra-sm);
+}
+.plano-opcao h4 {
+  font-family: 'Manrope', sans-serif; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--azul-sura);
+}
+.plano-opcao .plano-preco { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.plano-opcao .plano-preco .moeda { font-size: 1rem; }
+.plano-opcao .plano-preco .num { font-size: 2.4rem; }
+.plano-opcao .btn { width: 100%; }
+.plano-opcao .plano-resumo { color: var(--texto-suave); font-size: 0.9rem; min-height: 44px; }
+.plano-footer .coberturas-info { margin-top: 0; }
 .plano-preco { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .plano-preco .label { flex-basis: 100%; font-size: 0.9rem; color: var(--texto-suave); margin-right: 0; }
 .plano-preco .parcelas { font-size: 1rem; font-weight: 800; color: var(--azul-sura); margin-right: 2px; }
@@ -432,9 +464,9 @@ section { padding: 100px 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   section { padding: 70px 0; }
   .plano-header, .plano-footer { padding: 24px; }
+  .tabela { min-width: 820px; }
   .tabela th, .tabela td { padding: 14px 16px; font-size: 0.88rem; }
-  .tabela thead th:nth-child(3), .tabela tbody td:nth-child(3),
-  .tabela thead th:nth-child(4), .tabela tbody td:nth-child(4) { display: none; }
+  .planos-acoes { grid-template-columns: 1fr; }
   .coberturas-info { grid-template-columns: 1fr; }
 }
 @media (max-width: 540px) {
@@ -460,6 +492,15 @@ section { padding: 100px 0; }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 .hero-floating-1 { animation: float 4s ease-in-out infinite; }
 .hero-floating-2 { animation: float 4s ease-in-out infinite 2s; }
+
+@keyframes ctaBlink {
+  0%, 100% { background: var(--rosa-acento); box-shadow: 0 6px 20px rgba(250, 114, 14, 0.38), 0 0 0 0 rgba(250, 114, 14, 0.35); }
+  50% { background: #FF9A2E; box-shadow: 0 8px 26px rgba(250, 114, 14, 0.5), 0 0 0 8px rgba(250, 114, 14, 0.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-cta-piscante { animation: none; }
+}
 
 @keyframes whatsappPulse {
   0%, 100% { transform: scale(1); box-shadow: 0 16px 32px rgba(0,0,0,0.18), 0 10px 26px rgba(37, 211, 102, 0.32); }
@@ -492,7 +533,7 @@ section { padding: 100px 0; }
         <a href="#para-quem">Para quem é</a>
         <a href="#faq">FAQ</a>
       </div>
-      <a href="#plano" class="btn btn-primary">Contratar agora</a>
+      <a href="#plano" class="btn btn-primary btn-cta-piscante">Contratar agora</a>
     </nav>
   </div>
 </header>
@@ -509,7 +550,7 @@ section { padding: 100px 0; }
         <ul class="hero-bullets">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Até <strong>R$ 5.000</strong> em caso de roubo ou furto qualificado de bens</span>
+            <span>Até <strong>R$ 8.000</strong> em caso de roubo ou furto qualificado de bens</span>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -538,7 +579,7 @@ section { padding: 100px 0; }
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
           <div class="hero-floating-text">
-            <strong>R$ 5,90 por mês</strong>
+            <strong>A partir de R$ 3,90</strong>
             <span>menos que um café</span>
           </div>
         </div>
@@ -562,11 +603,11 @@ section { padding: 100px 0; }
     <div class="highlight-grid">
       <div class="highlight-item">
         <div class="num"><em>3</em> <span class="small">coberturas</span></div>
-        <div class="label">bolsa, cartões e saques sob coação no mesmo plano</div>
+        <div class="label">bolsa, cartões e saques sob coação em todos os planos</div>
       </div>
       <div class="highlight-item">
-        <div class="num">R$ <em>5,90</em></div>
-        <div class="label">por mês para manter seus pertences protegidos</div>
+        <div class="num">R$ <em>3,90</em></div>
+        <div class="label">por mês no plano de entrada para manter seus pertences protegidos</div>
       </div>
       <div class="highlight-item">
         <div class="num"><em>0</em> dias</div>
@@ -697,26 +738,28 @@ section { padding: 100px 0; }
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Condições Comerciais</div>
-      <h2>Plano mensal. Proteção completa.</h2>
-      <p>Sem complicação na hora de escolher: um plano só, com tudo o que você precisa.</p>
+      <h2>Bolsa Protegida + Cartão Protegido.</h2>
+      <p>Escolha o limite que combina com a sua rotina. Todos os planos são mensais, sem carência.</p>
     </div>
 
     <div class="plano-wrapper">
       <div class="plano-card">
         <div class="plano-header">
           <div>
-            <h3>Bolsa Protegida</h3>
-            <span style="opacity:0.85; font-size: 0.95rem;">Cobertura completa para seus pertences e cartões</span>
+            <h3>Condições Comerciais</h3>
+            <span style="opacity:0.85; font-size: 0.95rem;">Valores conforme Bolsa Protegida + Cartão Protegido</span>
           </div>
-          <span class="badge">Plano mensal</span>
+          <span class="badge">3 planos mensais</span>
         </div>
 
         <div style="overflow-x:auto;">
         <table class="tabela">
           <thead>
             <tr>
-              <th>Coberturas</th>
-              <th>Valor de cobertura</th>
+              <th>COBERTURAS</th>
+              <th>Plano 1</th>
+              <th>Plano 2</th>
+              <th>Plano 3</th>
               <th>Franquia</th>
               <th>Carência</th>
             </tr>
@@ -724,35 +767,74 @@ section { padding: 100px 0; }
           <tbody>
             <tr>
               <td>Roubo ou Furto Qualificado de Bens</td>
+              <td><span class="valor">R$ 3.000,00</span></td>
               <td><span class="valor">R$ 5.000,00</span></td>
+              <td><span class="valor">R$ 8.000,00</span></td>
               <td>15%</td>
               <td><span class="ok">Não se aplica</span></td>
             </tr>
             <tr>
               <td>Perda, Roubo ou Furto de Cartões</td>
+              <td><span class="valor">R$ 3.000,00</span></td>
               <td><span class="valor">R$ 5.000,00</span></td>
+              <td><span class="valor">R$ 8.000,00</span></td>
               <td><span class="ok">Não se aplica</span></td>
               <td><span class="ok">Não se aplica</span></td>
             </tr>
             <tr>
               <td>Saques e Compras realizadas sob coação</td>
+              <td><span class="valor">R$ 1.000,00</span></td>
+              <td><span class="valor">R$ 2.000,00</span></td>
               <td><span class="valor">R$ 2.000,00</span></td>
               <td><span class="ok">Não se aplica</span></td>
               <td><span class="ok">Não se aplica</span></td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td>Prêmio Mensal</td>
+              <td>R$ 3,90</td>
+              <td>R$ 5,90</td>
+              <td>R$ 9,90</td>
+              <td colspan="2">pagamento mensal</td>
+            </tr>
+          </tfoot>
         </table>
         </div>
 
         <div class="plano-footer">
-          <div class="plano-preco">
-            <span class="apenas">apenas</span>
-            <span class="moeda">R$</span>
-            <span class="num">5,90</span>
-            <span class="periodo">por mês</span>
-            <span class="cafezinho">menos que um cafezinho para proteger sua rotina</span>
+          <div class="planos-acoes" aria-label="Escolha seu plano">
+            <article class="plano-opcao">
+              <h4>Plano 1</h4>
+              <div class="plano-preco">
+                <span class="moeda">R$</span>
+                <span class="num">3,90</span>
+                <span class="periodo">por mês</span>
+              </div>
+              <p class="plano-resumo">Entrada essencial com R$ 3.000 para bens e cartões.</p>
+              <a href="./checkout/index.html?plano=plano1" class="btn btn-accent">Contratar agora</a>
+            </article>
+            <article class="plano-opcao">
+              <h4>Plano 2</h4>
+              <div class="plano-preco">
+                <span class="moeda">R$</span>
+                <span class="num">5,90</span>
+                <span class="periodo">por mês</span>
+              </div>
+              <p class="plano-resumo">Proteção intermediária com R$ 5.000 para bens e cartões.</p>
+              <a href="./checkout/index.html?plano=plano2" class="btn btn-accent">Contratar agora</a>
+            </article>
+            <article class="plano-opcao">
+              <h4>Plano 3</h4>
+              <div class="plano-preco">
+                <span class="moeda">R$</span>
+                <span class="num">9,90</span>
+                <span class="periodo">por mês</span>
+              </div>
+              <p class="plano-resumo">Maior limite da tabela, com R$ 8.000 para bens e cartões.</p>
+              <a href="./checkout/index.html?plano=plano3" class="btn btn-accent">Contratar agora</a>
+            </article>
           </div>
-          <a href="./checkout/index.html?plano=unico" class="btn btn-accent btn-lg">Contratar agora</a>
           <div class="coberturas-info">
             <div class="info-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
@@ -903,7 +985,7 @@ section { padding: 100px 0; }
           <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
         </button>
         <div class="faq-answer"><div class="faq-answer-inner">
-          <strong>Não há carência</strong> nas três coberturas do plano. Você fica protegida desde o primeiro dia após a contratação.
+          <strong>Não há carência</strong> nas três coberturas dos planos. Você fica protegida desde o primeiro dia após a contratação.
         </div></div>
       </div>
 

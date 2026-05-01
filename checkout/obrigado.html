@@ -198,7 +198,7 @@
                 <div class="summary-box">
                     <div class="summary-row">
                         <span class="summary-label">Plano</span>
-                        <span class="summary-value" id="lbl-plan">Bolsa Protegida</span>
+                        <span class="summary-value" id="lbl-plan">Plano 2 - Bolsa Protegida + Cartão Protegido</span>
                     </div>
                     <div class="summary-row">
                         <span class="summary-label">Valor mensal</span>
@@ -242,7 +242,8 @@
             try {
                 const state = JSON.parse(saved);
                 if (state.plan) {
-                    document.getElementById('lbl-plan').innerText = 'Bolsa Protegida';
+                    const planLabel = state.plan.subtitle ? `${state.plan.name} - ${state.plan.subtitle}` : (state.plan.name || 'Bolsa Protegida');
+                    document.getElementById('lbl-plan').innerText = planLabel;
                     document.getElementById('lbl-price').innerText = `R$ ${state.plan.price.toFixed(2).replace('.', ',')}`;
 
                     let val = state.plan.price.toFixed(2).replace('.', ',');
@@ -257,7 +258,7 @@
 
             } catch (e) { }
         } else {
-            document.getElementById('lbl-plan').innerText = 'Bolsa Protegida';
+            document.getElementById('lbl-plan').innerText = 'Plano 2 - Bolsa Protegida + Cartão Protegido';
             document.getElementById('lbl-price').innerText = 'R$ 5,90';
             document.getElementById('lbl-installments').innerText = 'R$ 5,90 por mês';
         }

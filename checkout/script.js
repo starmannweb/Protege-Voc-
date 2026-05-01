@@ -5,10 +5,28 @@ lucide.createIcons();
 const STORAGE_KEY = 'bolsa-checkout';
 
 // Plans Catalog
+const DEFAULT_PLAN_ID = 'plano2';
 const PLANS_CATALOG = {
-  unico: {
-    id: 'unico', name: 'Bolsa Protegida', price: 5.90,
-    benefits: ['Até R$ 5.000 para roubo ou furto qualificado de bens', 'Cartões protegidos contra perda, roubo e furto', 'Cobertura de R$ 2.000 para saques e compras sob coação', 'Sem carência', 'Sem franquia para cartões e cobertura sob coação']
+  plano1: {
+    id: 'plano1',
+    name: 'Plano 1',
+    subtitle: 'Bolsa Protegida + Cartão Protegido',
+    price: 3.90,
+    benefits: ['R$ 3.000 para roubo ou furto qualificado de bens', 'R$ 3.000 para perda, roubo ou furto de cartões', 'R$ 1.000 para saques e compras sob coação', 'Sem carência', 'Franquia de 15% apenas para bens']
+  },
+  plano2: {
+    id: 'plano2',
+    name: 'Plano 2',
+    subtitle: 'Bolsa Protegida + Cartão Protegido',
+    price: 5.90,
+    benefits: ['R$ 5.000 para roubo ou furto qualificado de bens', 'R$ 5.000 para perda, roubo ou furto de cartões', 'R$ 2.000 para saques e compras sob coação', 'Sem carência', 'Franquia de 15% apenas para bens']
+  },
+  plano3: {
+    id: 'plano3',
+    name: 'Plano 3',
+    subtitle: 'Bolsa Protegida + Cartão Protegido',
+    price: 9.90,
+    benefits: ['R$ 8.000 para roubo ou furto qualificado de bens', 'R$ 8.000 para perda, roubo ou furto de cartões', 'R$ 2.000 para saques e compras sob coação', 'Sem carência', 'Franquia de 15% apenas para bens']
   }
 };
 
@@ -129,7 +147,7 @@ function renderSummaryHtml(plan, isMobile) {
         <div class="plan-icon-wrapper"><i data-lucide="shield" style="width:1.25rem; height:1.25rem;"></i></div>
         <div>
           <h3 class="plan-name">${plan.name}</h3>
-          <p class="plan-subtitle">Proteção completa</p>
+          <p class="plan-subtitle">${plan.subtitle}</p>
         </div>
       </div>
       <div class="plan-price-section">
@@ -406,11 +424,15 @@ dom('btn-submit').addEventListener('click', async () => {
 window.addEventListener('DOMContentLoaded', () => {
   loadState();
   const params = new URLSearchParams(window.location.search);
-  const planoParam = params.get('plano');
-  if (planoParam && PLANS_CATALOG[planoParam.toLowerCase()]) {
-    state.planId = planoParam.toLowerCase();
-  } else if (!state.planId || !PLANS_CATALOG[state.planId]) {
-    state.planId = 'unico';
+  const planoParam = (params.get('plano') || '').toLowerCase();
+  const normalizedPlanParam = planoParam === 'unico' ? DEFAULT_PLAN_ID : planoParam;
+  const savedPlanId = state.planId === 'unico' ? DEFAULT_PLAN_ID : state.planId;
+  if (normalizedPlanParam && PLANS_CATALOG[normalizedPlanParam]) {
+    state.planId = normalizedPlanParam;
+  } else if (savedPlanId && PLANS_CATALOG[savedPlanId]) {
+    state.planId = savedPlanId;
+  } else {
+    state.planId = DEFAULT_PLAN_ID;
   }
   state.plan = PLANS_CATALOG[state.planId];
   state.step = 1;
