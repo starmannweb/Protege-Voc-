@@ -267,18 +267,40 @@ section { padding: 100px 0; }
 .plano-header h3 { color: var(--branco); font-size: 1.6rem; }
 .plano-header .badge { background: rgba(255,255,255,0.18); padding: 6px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
 
-.tabela { width: 100%; min-width: 860px; border-collapse: collapse; }
-.tabela th, .tabela td { padding: 20px 24px; text-align: left; }
+.tabela-wrap { overflow-x: auto; background: var(--branco); }
+.tabela { width: 100%; min-width: 1040px; border-collapse: collapse; table-layout: fixed; }
+.tabela th, .tabela td { padding: 20px 24px; text-align: left; vertical-align: middle; }
+.tabela th:not(:first-child), .tabela td:not(:first-child) { padding-left: 14px; padding-right: 14px; }
 .tabela thead th {
-  background: var(--azul-sura); font-size: 0.8rem; font-weight: 800; color: var(--branco);
+  background: #F3F7FB; font-size: 0.8rem; font-weight: 800; color: var(--azul-sura);
   letter-spacing: 0.08em; text-transform: uppercase;
+  border-bottom: 1px solid var(--borda);
 }
 .tabela tbody tr { border-bottom: 1px solid var(--borda); }
 .tabela tbody tr:last-child { border-bottom: none; }
 .tabela td:first-child { font-weight: 600; color: var(--texto); }
 .tabela th:not(:first-child), .tabela td:not(:first-child) { text-align: center; }
+.tabela th:first-child { width: 30%; }
+.tabela th:nth-child(2), .tabela th:nth-child(3), .tabela th:nth-child(4) { width: 15%; }
+.tabela th:nth-child(5), .tabela th:nth-child(6) { width: 12.5%; }
+.tabela th:nth-child(3), .tabela td:nth-child(3) { background: rgba(43, 169, 224, 0.07); }
 .tabela .valor { font-family: 'Fraunces', serif; font-weight: 600; color: var(--azul-sura); font-size: 1.05rem; }
-.tabela .ok { color: #2BD56C; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+.tabela .ok {
+  color: #18B957; background: rgba(43, 213, 108, 0.1); border: 1px solid rgba(43, 213, 108, 0.16);
+  font-weight: 800; display: inline-flex; align-items: center; justify-content: center;
+  padding: 5px 10px; border-radius: 999px; line-height: 1.2; white-space: nowrap;
+}
+.plano-col-head { display: grid; gap: 6px; justify-items: center; line-height: 1.2; }
+.plano-col-head strong { font-size: 0.9rem; color: var(--azul-sura); letter-spacing: 0; text-transform: none; }
+.plano-col-head .preco-mini {
+  font-family: 'Fraunces', serif; color: var(--azul-sura); font-size: 1.35rem; font-weight: 800; letter-spacing: 0;
+  text-transform: none;
+}
+.plano-col-head .preco-mini span { font-family: 'Manrope', sans-serif; color: var(--texto-suave); font-size: 0.72rem; font-weight: 700; }
+.plano-recomendado {
+  display: inline-flex; align-items: center; justify-content: center; padding: 4px 9px; border-radius: 999px;
+  background: rgba(250, 114, 14, 0.12); color: #D95F0B; font-size: 0.68rem; font-weight: 900; letter-spacing: 0.08em;
+}
 .tabela tfoot td {
   background: #EEF2F7;
   border-top: 1px solid var(--borda);
@@ -292,17 +314,29 @@ section { padding: 100px 0; }
 .planos-acoes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .plano-opcao {
   background: var(--branco); border: 1px solid rgba(0, 44, 92, 0.08); border-radius: 20px;
-  padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--sombra-sm);
+  padding: 22px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--sombra-sm);
+}
+.plano-opcao.destacado {
+  border-color: rgba(250, 114, 14, 0.32);
+  box-shadow: 0 14px 34px rgba(250, 114, 14, 0.14);
 }
 .plano-opcao h4 {
   font-family: 'Manrope', sans-serif; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--azul-sura);
 }
+.plano-opcao-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.plano-tag {
+  display: inline-flex; align-items: center; justify-content: center; padding: 5px 10px; border-radius: 999px;
+  background: var(--azul-claro); color: var(--azul-sura); font-size: 0.72rem; font-weight: 900;
+}
+.plano-tag.accent { background: rgba(250, 114, 14, 0.12); color: #D95F0B; }
 .plano-opcao .plano-preco { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .plano-opcao .plano-preco .moeda { font-size: 1rem; }
 .plano-opcao .plano-preco .num { font-size: 2.4rem; }
 .plano-opcao .btn { width: 100%; }
-.plano-opcao .plano-resumo { color: var(--texto-suave); font-size: 0.9rem; min-height: 44px; }
+.plano-bullets { list-style: none; display: grid; gap: 8px; color: var(--texto-suave); font-size: 0.9rem; min-height: 78px; }
+.plano-bullets li { display: flex; gap: 8px; align-items: flex-start; }
+.plano-bullets li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--rosa-acento); flex: 0 0 7px; margin-top: 8px; }
 .plano-footer .coberturas-info { margin-top: 0; }
 .plano-preco { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .plano-preco .label { flex-basis: 100%; font-size: 0.9rem; color: var(--texto-suave); margin-right: 0; }
@@ -464,7 +498,7 @@ section { padding: 100px 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   section { padding: 70px 0; }
   .plano-header, .plano-footer { padding: 24px; }
-  .tabela { min-width: 820px; }
+  .tabela { min-width: 1040px; }
   .tabela th, .tabela td { padding: 14px 16px; font-size: 0.88rem; }
   .planos-acoes { grid-template-columns: 1fr; }
   .coberturas-info { grid-template-columns: 1fr; }
@@ -738,28 +772,44 @@ section { padding: 100px 0; }
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Condições Comerciais</div>
-      <h2>Bolsa Protegida + Cartão Protegido.</h2>
-      <p>Escolha o limite que combina com a sua rotina. Todos os planos são mensais, sem carência.</p>
+      <h2>Plano mensal. Proteção completa.</h2>
+      <p>Escolha o limite de cobertura que combina com a sua rotina, mantendo a contratação simples e mensal.</p>
     </div>
 
     <div class="plano-wrapper">
       <div class="plano-card">
         <div class="plano-header">
           <div>
-            <h3>Condições Comerciais</h3>
-            <span style="opacity:0.85; font-size: 0.95rem;">Valores conforme Bolsa Protegida + Cartão Protegido</span>
+            <h3>Bolsa Protegida</h3>
+            <span style="opacity:0.85; font-size: 0.95rem;">Cobertura completa para seus pertences e cartões</span>
           </div>
-          <span class="badge">3 planos mensais</span>
+          <span class="badge">Plano mensal</span>
         </div>
 
-        <div style="overflow-x:auto;">
+        <div class="tabela-wrap">
         <table class="tabela">
           <thead>
             <tr>
-              <th>COBERTURAS</th>
-              <th>Plano 1</th>
-              <th>Plano 2</th>
-              <th>Plano 3</th>
+              <th>Coberturas</th>
+              <th>
+                <span class="plano-col-head">
+                  <strong>Plano 1</strong>
+                  <span class="preco-mini">R$ 3,90 <span>/mês</span></span>
+                </span>
+              </th>
+              <th>
+                <span class="plano-col-head">
+                  <span class="plano-recomendado">Mais escolhido</span>
+                  <strong>Plano 2</strong>
+                  <span class="preco-mini">R$ 5,90 <span>/mês</span></span>
+                </span>
+              </th>
+              <th>
+                <span class="plano-col-head">
+                  <strong>Plano 3</strong>
+                  <span class="preco-mini">R$ 9,90 <span>/mês</span></span>
+                </span>
+              </th>
               <th>Franquia</th>
               <th>Carência</th>
             </tr>
@@ -805,33 +855,51 @@ section { padding: 100px 0; }
         <div class="plano-footer">
           <div class="planos-acoes" aria-label="Escolha seu plano">
             <article class="plano-opcao">
-              <h4>Plano 1</h4>
+              <div class="plano-opcao-top">
+                <h4>Plano 1</h4>
+                <span class="plano-tag">Essencial</span>
+              </div>
               <div class="plano-preco">
                 <span class="moeda">R$</span>
                 <span class="num">3,90</span>
                 <span class="periodo">por mês</span>
               </div>
-              <p class="plano-resumo">Entrada essencial com R$ 3.000 para bens e cartões.</p>
+              <ul class="plano-bullets">
+                <li>R$ 3.000 para bens e cartões</li>
+                <li>R$ 1.000 para coação</li>
+              </ul>
               <a href="./checkout/index.html?plano=plano1" class="btn btn-accent">Contratar agora</a>
             </article>
-            <article class="plano-opcao">
-              <h4>Plano 2</h4>
+            <article class="plano-opcao destacado">
+              <div class="plano-opcao-top">
+                <h4>Plano 2</h4>
+                <span class="plano-tag accent">Mais escolhido</span>
+              </div>
               <div class="plano-preco">
                 <span class="moeda">R$</span>
                 <span class="num">5,90</span>
                 <span class="periodo">por mês</span>
               </div>
-              <p class="plano-resumo">Proteção intermediária com R$ 5.000 para bens e cartões.</p>
+              <ul class="plano-bullets">
+                <li>R$ 5.000 para bens e cartões</li>
+                <li>R$ 2.000 para coação</li>
+              </ul>
               <a href="./checkout/index.html?plano=plano2" class="btn btn-accent">Contratar agora</a>
             </article>
             <article class="plano-opcao">
-              <h4>Plano 3</h4>
+              <div class="plano-opcao-top">
+                <h4>Plano 3</h4>
+                <span class="plano-tag">Maior limite</span>
+              </div>
               <div class="plano-preco">
                 <span class="moeda">R$</span>
                 <span class="num">9,90</span>
                 <span class="periodo">por mês</span>
               </div>
-              <p class="plano-resumo">Maior limite da tabela, com R$ 8.000 para bens e cartões.</p>
+              <ul class="plano-bullets">
+                <li>R$ 8.000 para bens e cartões</li>
+                <li>R$ 2.000 para coação</li>
+              </ul>
               <a href="./checkout/index.html?plano=plano3" class="btn btn-accent">Contratar agora</a>
             </article>
           </div>
