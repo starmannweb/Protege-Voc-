@@ -267,77 +267,31 @@ section { padding: 100px 0; }
 .plano-header h3 { color: var(--branco); font-size: 1.6rem; }
 .plano-header .badge { background: rgba(255,255,255,0.18); padding: 6px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
 
-.tabela-wrap { overflow-x: auto; background: var(--branco); }
-.tabela { width: 100%; min-width: 1040px; border-collapse: collapse; table-layout: fixed; }
-.tabela th, .tabela td { padding: 20px 24px; text-align: left; vertical-align: middle; }
-.tabela th:not(:first-child), .tabela td:not(:first-child) { padding-left: 14px; padding-right: 14px; }
-.tabela thead th {
-  background: #F3F7FB; font-size: 0.8rem; font-weight: 800; color: var(--azul-sura);
-  letter-spacing: 0.08em; text-transform: uppercase;
-  border-bottom: 1px solid var(--borda);
+.planificacao-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0;
+  background: var(--branco);
 }
-.tabela tbody tr { border-bottom: 1px solid var(--borda); }
-.tabela tbody tr:last-child { border-bottom: none; }
-.tabela td:first-child { font-weight: 600; color: var(--texto); }
-.tabela th:not(:first-child), .tabela td:not(:first-child) { text-align: center; }
-.tabela th:first-child { width: 30%; }
-.tabela th:nth-child(2), .tabela th:nth-child(3), .tabela th:nth-child(4) { width: 15%; }
-.tabela th:nth-child(5), .tabela th:nth-child(6) { width: 12.5%; }
-.tabela th:nth-child(3), .tabela td:nth-child(3) { background: rgba(43, 169, 224, 0.07); }
-.tabela .valor { font-family: 'Fraunces', serif; font-weight: 600; color: var(--azul-sura); font-size: 1.05rem; }
-.tabela .ok {
-  color: #18B957; background: rgba(43, 213, 108, 0.1); border: 1px solid rgba(43, 213, 108, 0.16);
-  font-weight: 800; display: inline-flex; align-items: center; justify-content: center;
-  padding: 5px 10px; border-radius: 999px; line-height: 1.2; white-space: nowrap;
+.planificacao-col {
+  display: flex; flex-direction: column; min-width: 0;
+  border-right: 1px solid var(--borda);
 }
-.plano-col-head { display: grid; gap: 6px; justify-items: center; line-height: 1.2; }
-.plano-col-head strong { font-size: 0.9rem; color: var(--azul-sura); letter-spacing: 0; text-transform: none; }
-.plano-col-head .preco-mini {
-  font-family: 'Fraunces', serif; color: var(--azul-sura); font-size: 1.35rem; font-weight: 800; letter-spacing: 0;
-  text-transform: none;
+.planificacao-col:last-child { border-right: none; }
+.planificacao-col.destacado { background: linear-gradient(180deg, rgba(43, 169, 224, 0.09) 0%, rgba(255,255,255,0) 34%); }
+.planificacao-head {
+  min-height: 190px; padding: 28px; display: flex; flex-direction: column; gap: 16px;
+  background: #F3F7FB; border-bottom: 1px solid var(--borda);
 }
-.plano-col-head .preco-mini span { font-family: 'Manrope', sans-serif; color: var(--texto-suave); font-size: 0.72rem; font-weight: 700; }
-.plano-recomendado {
-  display: inline-flex; align-items: center; justify-content: center; padding: 4px 9px; border-radius: 999px;
-  background: rgba(250, 114, 14, 0.12); color: #D95F0B; font-size: 0.68rem; font-weight: 900; letter-spacing: 0.08em;
-}
-.tabela tfoot td {
-  background: #EEF2F7;
-  border-top: 1px solid var(--borda);
-  font-weight: 800;
-  color: var(--azul-sura);
-}
-
-.plano-footer {
-  background: var(--azul-claro); padding: 30px 40px; display: grid; gap: 24px;
-}
-.planos-acoes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.plano-opcao {
-  background: var(--branco); border: 1px solid rgba(0, 44, 92, 0.08); border-radius: 20px;
-  padding: 22px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--sombra-sm);
-}
-.plano-opcao.destacado {
-  border-color: rgba(250, 114, 14, 0.32);
-  box-shadow: 0 14px 34px rgba(250, 114, 14, 0.14);
-}
-.plano-opcao h4 {
+.planificacao-col.destacado .planificacao-head { background: #EAF6FC; }
+.planificacao-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.planificacao-title h4 {
   font-family: 'Manrope', sans-serif; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--azul-sura);
 }
-.plano-opcao-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .plano-tag {
   display: inline-flex; align-items: center; justify-content: center; padding: 5px 10px; border-radius: 999px;
   background: var(--azul-claro); color: var(--azul-sura); font-size: 0.72rem; font-weight: 900;
 }
 .plano-tag.accent { background: rgba(250, 114, 14, 0.12); color: #D95F0B; }
-.plano-opcao .plano-preco { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
-.plano-opcao .plano-preco .moeda { font-size: 1rem; }
-.plano-opcao .plano-preco .num { font-size: 2.4rem; }
-.plano-opcao .btn { width: 100%; }
-.plano-bullets { list-style: none; display: grid; gap: 8px; color: var(--texto-suave); font-size: 0.9rem; min-height: 78px; }
-.plano-bullets li { display: flex; gap: 8px; align-items: flex-start; }
-.plano-bullets li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--rosa-acento); flex: 0 0 7px; margin-top: 8px; }
-.plano-footer .coberturas-info { margin-top: 0; }
 .plano-preco { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .plano-preco .label { flex-basis: 100%; font-size: 0.9rem; color: var(--texto-suave); margin-right: 0; }
 .plano-preco .parcelas { font-size: 1rem; font-weight: 800; color: var(--azul-sura); margin-right: 2px; }
@@ -346,6 +300,31 @@ section { padding: 100px 0; }
 .plano-preco .num { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 700; color: var(--azul-sura); line-height: 1; }
 .plano-preco .periodo { font-size: 1rem; color: var(--texto-suave); }
 .plano-preco .cafezinho { flex-basis: 100%; font-size: 0.9rem; color: var(--texto-suave); margin-top: -2px; }
+.planificacao-sub { color: var(--texto-suave); font-size: 0.9rem; line-height: 1.45; }
+.planificacao-body { display: flex; flex-direction: column; flex: 1; }
+.planificacao-row {
+  min-height: 92px; padding: 18px 28px; display: grid; gap: 8px; align-content: center;
+  border-bottom: 1px solid var(--borda);
+}
+.planificacao-row .label {
+  font-size: 0.78rem; font-weight: 800; color: var(--azul-sura); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.planificacao-row strong { font-size: 1.02rem; color: var(--texto); line-height: 1.35; }
+.planificacao-row .valor { font-family: 'Fraunces', serif; font-size: 1.45rem; color: var(--azul-sura); line-height: 1; }
+.planificacao-row small { color: var(--texto-suave); font-size: 0.82rem; line-height: 1.4; }
+.planificacao-ok {
+  width: fit-content; display: inline-flex; align-items: center; justify-content: center;
+  padding: 5px 10px; border-radius: 999px; color: #18B957; background: rgba(43, 213, 108, 0.1);
+  border: 1px solid rgba(43, 213, 108, 0.16); font-size: 0.9rem; font-weight: 900;
+}
+.planificacao-cta { margin-top: auto; padding: 24px 28px 28px; background: #F8FBFD; }
+.planificacao-col.destacado .planificacao-cta { background: #EFF8FC; }
+.planificacao-cta .btn { width: 100%; }
+
+.plano-footer {
+  background: var(--azul-claro); padding: 30px 40px; display: grid; gap: 24px;
+}
+.plano-footer .coberturas-info { margin-top: 0; }
 
 /* ===== PARA QUEM É ===== */
 .personas { background: var(--branco); }
@@ -498,9 +477,12 @@ section { padding: 100px 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   section { padding: 70px 0; }
   .plano-header, .plano-footer { padding: 24px; }
-  .tabela { min-width: 1040px; }
-  .tabela th, .tabela td { padding: 14px 16px; font-size: 0.88rem; }
-  .planos-acoes { grid-template-columns: 1fr; }
+  .planificacao-grid { grid-template-columns: 1fr; }
+  .planificacao-col { border-right: none; border-bottom: 1px solid var(--borda); }
+  .planificacao-col:last-child { border-bottom: none; }
+  .planificacao-head { min-height: auto; padding: 24px; }
+  .planificacao-row { min-height: auto; padding: 16px 24px; }
+  .planificacao-cta { padding: 22px 24px 24px; }
   .coberturas-info { grid-template-columns: 1fr; }
 }
 @media (max-width: 540px) {
@@ -786,123 +768,135 @@ section { padding: 100px 0; }
           <span class="badge">Plano mensal</span>
         </div>
 
-        <div class="tabela-wrap">
-        <table class="tabela">
-          <thead>
-            <tr>
-              <th>Coberturas</th>
-              <th>
-                <span class="plano-col-head">
-                  <strong>Plano 1</strong>
-                  <span class="preco-mini">R$ 3,90 <span>/mês</span></span>
-                </span>
-              </th>
-              <th>
-                <span class="plano-col-head">
-                  <span class="plano-recomendado">Mais escolhido</span>
-                  <strong>Plano 2</strong>
-                  <span class="preco-mini">R$ 5,90 <span>/mês</span></span>
-                </span>
-              </th>
-              <th>
-                <span class="plano-col-head">
-                  <strong>Plano 3</strong>
-                  <span class="preco-mini">R$ 9,90 <span>/mês</span></span>
-                </span>
-              </th>
-              <th>Franquia</th>
-              <th>Carência</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Roubo ou Furto Qualificado de Bens</td>
-              <td><span class="valor">R$ 3.000,00</span></td>
-              <td><span class="valor">R$ 5.000,00</span></td>
-              <td><span class="valor">R$ 8.000,00</span></td>
-              <td>15%</td>
-              <td><span class="ok">Não se aplica</span></td>
-            </tr>
-            <tr>
-              <td>Perda, Roubo ou Furto de Cartões</td>
-              <td><span class="valor">R$ 3.000,00</span></td>
-              <td><span class="valor">R$ 5.000,00</span></td>
-              <td><span class="valor">R$ 8.000,00</span></td>
-              <td><span class="ok">Não se aplica</span></td>
-              <td><span class="ok">Não se aplica</span></td>
-            </tr>
-            <tr>
-              <td>Saques e Compras realizadas sob coação</td>
-              <td><span class="valor">R$ 1.000,00</span></td>
-              <td><span class="valor">R$ 2.000,00</span></td>
-              <td><span class="valor">R$ 2.000,00</span></td>
-              <td><span class="ok">Não se aplica</span></td>
-              <td><span class="ok">Não se aplica</span></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>Prêmio Mensal</td>
-              <td>R$ 3,90</td>
-              <td>R$ 5,90</td>
-              <td>R$ 9,90</td>
-              <td colspan="2">pagamento mensal</td>
-            </tr>
-          </tfoot>
-        </table>
-        </div>
-
-        <div class="plano-footer">
-          <div class="planos-acoes" aria-label="Escolha seu plano">
-            <article class="plano-opcao">
-              <div class="plano-opcao-top">
+        <div class="planificacao-grid" aria-label="Planificação comercial por plano">
+          <article class="planificacao-col">
+            <div class="planificacao-head">
+              <div class="planificacao-title">
                 <h4>Plano 1</h4>
                 <span class="plano-tag">Essencial</span>
               </div>
               <div class="plano-preco">
+                <span class="apenas">apenas</span>
                 <span class="moeda">R$</span>
                 <span class="num">3,90</span>
                 <span class="periodo">por mês</span>
               </div>
-              <ul class="plano-bullets">
-                <li>R$ 3.000 para bens e cartões</li>
-                <li>R$ 1.000 para coação</li>
-              </ul>
+              <p class="planificacao-sub">Entrada objetiva para proteger pertences, cartões e eventos sob coação.</p>
+            </div>
+            <div class="planificacao-body">
+              <div class="planificacao-row">
+                <span class="label">Roubo ou furto qualificado de bens</span>
+                <strong class="valor">R$ 3.000,00</strong>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Perda, roubo ou furto de cartões</span>
+                <strong class="valor">R$ 3.000,00</strong>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Saques e compras sob coação</span>
+                <strong class="valor">R$ 1.000,00</strong>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Franquia</span>
+                <strong>15% em roubo ou furto qualificado de bens</strong>
+                <small>Cartões e coação: não se aplica.</small>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Carência</span>
+                <strong class="planificacao-ok">Não se aplica</strong>
+              </div>
+            </div>
+            <div class="planificacao-cta">
               <a href="./checkout/index.html?plano=plano1" class="btn btn-accent">Contratar agora</a>
-            </article>
-            <article class="plano-opcao destacado">
-              <div class="plano-opcao-top">
+            </div>
+          </article>
+
+          <article class="planificacao-col destacado">
+            <div class="planificacao-head">
+              <div class="planificacao-title">
                 <h4>Plano 2</h4>
                 <span class="plano-tag accent">Mais escolhido</span>
               </div>
               <div class="plano-preco">
+                <span class="apenas">apenas</span>
                 <span class="moeda">R$</span>
                 <span class="num">5,90</span>
                 <span class="periodo">por mês</span>
               </div>
-              <ul class="plano-bullets">
-                <li>R$ 5.000 para bens e cartões</li>
-                <li>R$ 2.000 para coação</li>
-              </ul>
+              <p class="planificacao-sub">Equilíbrio entre preço e cobertura, com limite maior para bens e cartões.</p>
+            </div>
+            <div class="planificacao-body">
+              <div class="planificacao-row">
+                <span class="label">Roubo ou furto qualificado de bens</span>
+                <strong class="valor">R$ 5.000,00</strong>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Perda, roubo ou furto de cartões</span>
+                <strong class="valor">R$ 5.000,00</strong>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Saques e compras sob coação</span>
+                <strong class="valor">R$ 2.000,00</strong>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Franquia</span>
+                <strong>15% em roubo ou furto qualificado de bens</strong>
+                <small>Cartões e coação: não se aplica.</small>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Carência</span>
+                <strong class="planificacao-ok">Não se aplica</strong>
+              </div>
+            </div>
+            <div class="planificacao-cta">
               <a href="./checkout/index.html?plano=plano2" class="btn btn-accent">Contratar agora</a>
-            </article>
-            <article class="plano-opcao">
-              <div class="plano-opcao-top">
+            </div>
+          </article>
+
+          <article class="planificacao-col">
+            <div class="planificacao-head">
+              <div class="planificacao-title">
                 <h4>Plano 3</h4>
                 <span class="plano-tag">Maior limite</span>
               </div>
               <div class="plano-preco">
+                <span class="apenas">apenas</span>
                 <span class="moeda">R$</span>
                 <span class="num">9,90</span>
                 <span class="periodo">por mês</span>
               </div>
-              <ul class="plano-bullets">
-                <li>R$ 8.000 para bens e cartões</li>
-                <li>R$ 2.000 para coação</li>
-              </ul>
+              <p class="planificacao-sub">A opção com maior proteção para quem quer ampliar os limites contratados.</p>
+            </div>
+            <div class="planificacao-body">
+              <div class="planificacao-row">
+                <span class="label">Roubo ou furto qualificado de bens</span>
+                <strong class="valor">R$ 8.000,00</strong>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Perda, roubo ou furto de cartões</span>
+                <strong class="valor">R$ 8.000,00</strong>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Saques e compras sob coação</span>
+                <strong class="valor">R$ 2.000,00</strong>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Franquia</span>
+                <strong>15% em roubo ou furto qualificado de bens</strong>
+                <small>Cartões e coação: não se aplica.</small>
+              </div>
+              <div class="planificacao-row">
+                <span class="label">Carência</span>
+                <strong class="planificacao-ok">Não se aplica</strong>
+              </div>
+            </div>
+            <div class="planificacao-cta">
               <a href="./checkout/index.html?plano=plano3" class="btn btn-accent">Contratar agora</a>
-            </article>
-          </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="plano-footer">
           <div class="coberturas-info">
             <div class="info-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
